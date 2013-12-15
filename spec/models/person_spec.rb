@@ -8,6 +8,7 @@ describe Person do
   it { should respond_to(:first_name) }
   it { should respond_to(:last_name) }
   it { should respond_to(:full_name) }
+  it { should respond_to(:events) }
 
   describe "#full_name" do
     before do
