@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe Person do
-  before { @person = Person.new(first_name: "first", last_name: "last") }
+  before do
+    @person = Person.new(first_name: "first", last_name: "last") 
+    @duplicate_person = Person.new(first_name: "first", last_name: "last") 
+  end
   
   subject { @person }
   
@@ -37,6 +40,11 @@ describe Person do
       
       @person.events_as_string.should eq("anniversary / birthday / graduation")
     end
+  end
+  
+  it "should not allow duplicates" do
+    @person.save!
+    @duplicate_person.should_not be_valid
   end
   
 end
