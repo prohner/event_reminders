@@ -29,11 +29,13 @@ describe Person do
   describe "#events_as_string" do
     it "should list events as an alphabetized string string with slashes" do
       @event1 = Event.new(event_date: "1/1/2013", description: "birthday", gift_ideas: "cool stuff")
-      @event2 = Event.new(event_date: "1/1/2013", description: "anniversary", gift_ideas: "cool stuff")
+      @event2 = Event.new(event_date: "1/1/2013", description: "graduation", gift_ideas: "cool stuff")
+      @event3 = Event.new(event_date: "1/1/2013", description: "anniversary", gift_ideas: "cool stuff")
       @person.events << @event1
       @person.events << @event2
+      @person.events << @event3
       
-      @person.events_as_string.should eq("anniversary / birthday")
+      @person.events_as_string.should eq("anniversary / birthday / graduation")
     end
   end
   
