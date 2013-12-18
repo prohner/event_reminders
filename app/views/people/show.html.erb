@@ -15,5 +15,9 @@
   <%= @person.notes %>
 </p>
 
+<%= render @person.events %>
+
+
+<%= link_to 'Add Event', new_person_event_path(@person) %> |
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

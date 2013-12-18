@@ -15,5 +15,7 @@ describe "people/show" do
     rendered.should match(/First Name/)
     rendered.should match(/Last Name/)
     rendered.should match(/Notes/)
+    
+    response.body.should have_css("a", :text => "Add Event")
   end
 end

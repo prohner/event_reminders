@@ -9,6 +9,7 @@ describe Person do
   it { should respond_to(:last_name) }
   it { should respond_to(:full_name) }
   it { should respond_to(:events) }
+  it { should respond_to(:events_as_string) }
 
   describe "#full_name" do
     before do
@@ -22,6 +23,17 @@ describe Person do
   
     it "should remove last name leading/trailing white space" do
       @person_last_padded.full_name.should eq("first last")
+    end
+  end
+  
+  describe "#events_as_string" do
+    it "should list events as an alphabetized string string with slashes" do
+      @event1 = Event.new(event_date: "1/1/2013", description: "birthday", gift_ideas: "cool stuff")
+      @event2 = Event.new(event_date: "1/1/2013", description: "anniversary", gift_ideas: "cool stuff")
+      @person.events << @event1
+      @person.events << @event2
+      
+      @person.events_as_string.should eq("anniversary / birthday")
     end
   end
   

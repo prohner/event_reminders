@@ -47,9 +47,17 @@ describe EventsController do
   end
 
   describe "GET new" do
-    it "assigns a new event as @event" do
+    it "redirects if there is NO person" do
       get :new, {}, valid_session
-      assigns(:event).should be_a_new(Event)
+      redirect_to root_path
+    end
+    it "assigns a new event as @event and assigns to a person" do
+      person = Person.new(first_name: "first", last_name: "last" )
+      person.save
+      puts new_person_event_path(person)
+      get  :new, { :person_id => person.id }, valid_session
+      assigns(:event).person_id.should eq(person.id)
+      assigns(:person).should eq(person)
     end
   end
 

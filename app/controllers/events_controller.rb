@@ -14,7 +14,17 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    if params[:person_id].to_s.blank?
+      redirect_to root_path 
+      return 
+    end
+    
+    @person = Person.find(params[:person_id])
+    if @person.nil?
+      redirect_to root_path
+    end
     @event = Event.new
+    @person.events << @event
   end
 
   # GET /events/1/edit

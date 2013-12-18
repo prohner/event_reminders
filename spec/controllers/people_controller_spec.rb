@@ -23,18 +23,43 @@ describe PeopleController do
   # This should return the minimal set of attributes required to create a valid
   # Person. As you add validations to Person, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "first_name" => "MyString" } }
+  let(:valid_attributes)   { { "first_name" => "aaaa", "last_name" => "aaaa" } }
+  let(:valid_attributes_b) { { "first_name" => "bbbb", "last_name" => "bbbb" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # PeopleController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  integrate_views
+
+  describe "Home Page" do
+    before { visit root_path }
+    subject { page }
+    
+    it { should have_selector('h1', :text => "Event Reminders") }
+    
+  end
+  describe "Home Page" do
+    before { visit root_path }
+    subject { page }
+    
+    it { should have_selector('h1', :text => "Event Reminders") }
+    
+  end
+
   describe "GET index" do
     it "assigns all people as @people" do
       person = Person.create! valid_attributes
       get :index, {}, valid_session
       assigns(:people).should eq([person])
+    end
+
+    it "should return people in alphabetical order by last name" do
+      person_b = Person.create! valid_attributes_b
+      person_a = Person.create! valid_attributes
+      get :index, {}, valid_session
+      assigns(:people).should eq([person_a, person_b])
     end
   end
 
