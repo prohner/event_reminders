@@ -1,5 +1,5 @@
 <tr>
 	<td class="event-data"><%= event.event_date.strftime("%m/%d/%Y") %></td>
-	<td class="event-data"><%= Date.today.strftime("%Y").to_i - event.event_date.strftime("%Y").to_i %>  years </td>
 	<td class="event-data"><%= event.description %></td>
+	<td class="event-data"><%= event.years_at_next_occurrence_of_event %>  years </td>
 </tr>

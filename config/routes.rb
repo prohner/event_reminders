@@ -1,4 +1,5 @@
 EventReminders::Application.routes.draw do
+  get "upcoming_events/upcoming_events"
   get "welcome/index"
   get "welcome/event_list"
   resources :events
