@@ -1,1 +1,13 @@
-<%= event.description %> <br/>
+<div class="event-date">
+	<%= event.event_date.strftime("%m/%d/%Y") %>  
+</div>
+
+<div class="event-date-distance-container">
+	<div class="event-date-distance">
+		<%= Date.today.strftime("%Y").to_i - event.event_date.strftime("%Y").to_i %>  years 
+	</div>
+</div>
+
+<div class="event-date-description">
+	<%= event.description %> <br/>
+</div>

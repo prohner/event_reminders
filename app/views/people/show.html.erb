@@ -15,7 +15,21 @@
   <%= @person.notes %>
 </p>
 
-<%= render @person.events %>
+<p>
+	<strong>Events:</strong>
+</p>
+
+<!-- <%= render 'person_events', :locals => { :events => @person.events } %> -->
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr>
+		<th>Event</th>
+		<th>Distance</th>
+		<th>Description</th>
+	</tr>
+
+<%= render :partial => 'person_event', :collection => @person.events, :as => :event %>
+
+</table>
 
 
 <%= link_to 'Add Event', new_person_event_path(@person) %> |

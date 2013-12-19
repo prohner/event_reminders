@@ -2,6 +2,19 @@ namespace :db do
   desc "Create sample data"
   task :populate => :environment do
     Rake::Task['db:reset'].invoke
+    
+    # select 'Person.create!(:first_name => "' + FirstName + '", :last_name => "' + LastName + '")' 
+    #   from people
+    # 
+    # select 'Person.find_by_first_name_and_last_name("' + firstName + '", "' 
+    #      + lastName + '").events.create!(:description => "' 
+    #      + replace(convert(varchar(200), o.description), '"', '\"') + '", :event_date => "' + convert(varchar(10), o.occasionDate, 121) + '", :gift_ideas => "' + isNull(o.giftIdeas, '') + '")'
+    #      --, o.*
+    #   from people p
+    #   join occasions o
+    #     on p.personid = o.personid
+    #  where description is not null
+    
     Person.create!(:first_name => "Preston", :last_name => "Rohner")
     Person.create!(:first_name => "Tom", :last_name => "Zachary")
     Person.create!(:first_name => "Evelyn", :last_name => "Bettauer")
